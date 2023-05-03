@@ -14,6 +14,7 @@ from rest_framework.permissions import (
 
 
 class UserView(generics.ListCreateAPIView):
+
     queryset = User.objects.all()
     serializer_class = UserSerializer
 

@@ -1,5 +1,4 @@
 from django.db import models
-from django.contrib.postgres.fields import ArrayField
 
 
 class Cart(models.Model): 
@@ -18,10 +17,6 @@ class Cart(models.Model):
         related_name="cart_products",
     )
 
-    products = models.ArrayField(
-        models.JSONField()
-    )
-
 class CartProduct(models.Model):
     class Meta:
         ordering = ["id"]
@@ -31,12 +26,12 @@ class CartProduct(models.Model):
     cart = models.ForeignKey(
         "carts.Cart",
         on_delete=models.CASCADE,
-        related_name='cart_products'
+        related_name='pivo_cart'
     )
 
     product = models.ForeignKey(
         'products.Product',
         on_delete=models.CASCADE,
-        related_name='cart_products'
+        related_name='pivo_product'
     )
 

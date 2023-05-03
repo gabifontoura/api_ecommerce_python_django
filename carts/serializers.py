@@ -26,9 +26,10 @@ class CartProductSerializer(serializers.ModelSerializer):
 
 
 class CartSerializer(serializers.ModelSerializer):
-    cart_products = CartProductSerializer(many=True, read_only=True)
+
     class Meta:
         model = Cart
-        fields = ('id', 'user_id', 'products', 'cart_products')
+        fields = ('id', 'cart_products')
+        depth = 2
     
       
