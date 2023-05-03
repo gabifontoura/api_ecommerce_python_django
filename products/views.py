@@ -2,14 +2,17 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.shortcuts import render
-from products.models import Product
-from products.serializers import ProductSerializer
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework import generics
+
+from users.permissions import IsSellerOrAdmin, IsSellerOwnerOrAdmin
+from products.models import Product
+from products.serializers import ProductSerializer
 
 
 class ProductView(generics.ListCreateAPIView):
     authentication_classes = [JWTAuthentication]
+    permission_classes = [IsSellerOrAdmin]
 
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
@@ -20,6 +23,7 @@ class ProductView(generics.ListCreateAPIView):
 
 class ProductDetailView(generics.RetrieveUpdateDestroyAPIView):
     authentication_classes = [JWTAuthentication]
+    permission_classes = [IsSellerOwnerOrAdmin]
 
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
