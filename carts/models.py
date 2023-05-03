@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.postgres.fields import ArrayField
 
 
 class Cart(models.Model): 
@@ -10,8 +11,16 @@ class Cart(models.Model):
         on_delete=models.CASCADE,
         related_name='cart'
     )
+    
+    cart_products = models.ManyToManyField(
+        "products.Product",
+        through="carts.CartProduct",
+        related_name="cart_products",
+    )
 
-    products = models.JSONField()
+    products = models.ArrayField(
+        models.JSONField()
+    )
 
 class CartProduct(models.Model):
     class Meta:
