@@ -10,8 +10,8 @@ class Address(models.Model):
     city = models.CharField(max_length=50)
     state = models.CharField(max_length=2)
 
-    # user = models.OneToOneField(
-    #     "users.User",
-    #     on_delete=models.CASCADE,
-    #     related_name="address",
-    # )
+    user = models.OneToOneField(
+        "users.User",
+        on_delete=models.CASCADE,
+        related_name="address",
+    )
