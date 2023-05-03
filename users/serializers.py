@@ -15,7 +15,7 @@ class UserSerializer(serializers.ModelSerializer):
         ],
     )
 
-    def create(self, instance: User, validated_data: dict) -> User:
+    def create(self, validated_data: dict) -> User:
         if validated_data.get("role") == "Administrador":
             return User.objects.create_superuser(**validated_data)
         
