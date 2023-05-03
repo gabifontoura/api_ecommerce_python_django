@@ -4,6 +4,7 @@ from rest_framework.permissions import IsAuthenticated
 
 from users.permissions import IsAddressOwnerOrAdminPermission
 from addresses.models import Address
+from users.models import User
 from addresses.serializers import AddressSerializer
 
 # Create your views here.
