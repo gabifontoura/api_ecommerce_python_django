@@ -5,6 +5,7 @@ from users.serializers import UserSerializer
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from django.shortcuts import get_object_or_404
 from users.permissions import IsAdminOrReadOnly, HasAdminPermission
+from rest_framework import generics
 from rest_framework.permissions import (
     IsAdminUser,
     IsAuthenticated,
@@ -12,35 +13,14 @@ from rest_framework.permissions import (
 )
 
 
-class UserView(APIView):
-    def post(self, request: Request) -> Response:
-        serializer = UserSerializer(data=request.data)
-
-        serializer.is_valid(raise_exception=True)
-
-        serializer.save()
-
-        return Response(serializer.data, status.HTTP_201_CREATED)
+class UserView(generics.ListCreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 
 class UserViewDetail(APIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [HasAdminPermission]
-
-    def get(self, request: Request, user_id) -> Response:
-        user = get_object_or_404(User, pk=user_id)
-        self.check_object_permissions(request, user)
-        serializer = UserSerializer(user)
-
-        return Response(serializer.data, status.HTTP_200_OK)
-
-    def patch(self, request: Request, user_id: int) -> Response:
-        user = get_object_or_404(User, pk=user_id)
-        self.check_object_permissions(request, user)
-
-        serializer = UserSerializer(user, request.data, partial=True)
-
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-
-        return Response(serializer.data, status.HTTP_200_OK)
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    url_params_name = "user_id"
