@@ -14,20 +14,6 @@ class AddToCartView(generics.CreateAPIView):
  
 
 
-class RemoveFromCartView(generics.DestroyAPIView):
+class RemoveFromCartView(generics.RetrieveUpdateDestroyAPIView):
     queryset = CartProduct.objects.all()
     serializer_class = CartProductSerializer
-
-    def get_object(self):
-        user = self.request.user
-        cart = CartProduct.objects.filter(user=user).first()
-        if not cart:
-            raise generics.NotFound('Cart not found')
-        product_id = self.kwargs['product_id']
-        try:
-            return CartProduct.objects.get(cart=cart, product_id=product_id)
-        except CartProduct.DoesNotExist:
-            raise generics.NotFound('Product not found in cart')
-
-    def perform_destroy(self, instance):
-        instance.delete()
