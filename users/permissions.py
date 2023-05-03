@@ -10,11 +10,16 @@ class IsOwnerOrAdminPermission(permissions.BasePermission):
     ) -> bool:
         return obj == request.user or request.user.is_superuser
     
-class IsAddressOwnerOrAdminPermission(permissions.BasePermission):
-    def has_permission(self, request:Request, view:View):
-        address_data = Address.objects.get(user_id = request.user.id)
 
-        return (request.user.id == address_data.user_id) or request.user.is_superuser
+class IsAddressOwnerOrAdminPermission(permissions.BasePermission):
+
+    def has_permission(self, request:Request, view:View):
+        # import ipdb
+        # ipdb.set_trace()
+        # address_data = Address.objects.get(user_id = request.user.id)
+
+        return (request.user.id == view.kwargs['user_id']) or request.user.is_superuser
+
 
 class IsSellerOrAdmin(permissions.BasePermission):
     def has_permission(self, request:Request, view:View):

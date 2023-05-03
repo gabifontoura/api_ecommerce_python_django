@@ -8,13 +8,12 @@ class CartProductSerializer(serializers.ModelSerializer):
         model = CartProduct
         fields = ('id', 'product_quantity', 'product')
 
-    def get(self, validated_data):
-        cart = Cart.objects.get(user=validated_data['user'])
+    # def get(self, validated_data):
+    #     cart = Cart.objects.get(user=validated_data['user'])
 
-        cart_products = CartProduct.objects.filter(
-            cart=cart,
-        )
-
+    #     cart_products = CartProduct.objects.filter(
+    #         cart=cart,
+    #     )
 
 
     def create(self, validated_data):
@@ -38,7 +37,6 @@ class CartSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Cart
-        # fields = ('id', 'user_id')
         fields = ('id', 'user_id', 'cart_products')
         depth = 2
     

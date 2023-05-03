@@ -16,6 +16,8 @@ from rest_framework.permissions import (
 class UserView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    lookup_url_kwarg = 'user_id'
+
 
 class UserAllView(generics.ListAPIView):
     authentication_classes = [JWTAuthentication]
@@ -23,11 +25,11 @@ class UserAllView(generics.ListAPIView):
 
     queryset = User.objects.all()
     serializer_class = UserSerializer
-
+    lookup_url_kwarg = 'user_id'
 
 class UserViewDetail(generics.RetrieveUpdateDestroyAPIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsOwnerOrAdminPermission]
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    url_params_name = "user_id"
+    lookup_url_kwarg = 'user_id'
