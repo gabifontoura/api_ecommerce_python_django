@@ -15,7 +15,7 @@ class Order(models.Model):
 
     seller_id = models.IntegerField(null=True, default=None)
 
-    products = models.JSONField()
+    product = models.JSONField()
 
     user = models.ForeignKey(
         "users.User",

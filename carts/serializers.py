@@ -29,8 +29,6 @@ class CartProductSerializer(serializers.ModelSerializer):
         instance.save()
 
         return instance
-
- 
     
     
 class CartProductListSerializer(serializers.ModelSerializer):  
