@@ -33,7 +33,7 @@ class ListCartView(generics.ListAPIView):
         return cart_products
         
 
-class CartDetailView(generics.UpdateAPIView):
+class CartDetailView(generics.UpdateAPIView, generics.DestroyAPIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
 
@@ -42,24 +42,9 @@ class CartDetailView(generics.UpdateAPIView):
 
     lookup_field = 'product_id'
 
-    def get_queryset(self):
+    def get_object(self):
         cart = get_object_or_404(Cart, user=self.request.user)
         get_product = get_object_or_404(Product, pk=self.kwargs.get('product_id'))
         cart_product = self.queryset.filter(product=get_product, cart=cart).first()
 
         return cart_product
-    
-    # Se usar o código abaixo funciona a atualização
-    
-    # def update(self, request, *args, **kwargs):
-    #     cart = get_object_or_404(Cart, user=self.request.user)
-    #     get_product = get_object_or_404(Product, pk=self.kwargs.get('product_id'))
-    #     cart_product = self.queryset.filter(product=get_product, cart=cart).first()
-    #     # instance = self.get_object()
-    #     instance = cart_product
-    #     serializer = self.get_serializer(instance, data=request.data, partial=self.partial_update)
-    #     serializer.is_valid(raise_exception=True)
-    #     serializer.save()
-    #     # import ipdb
-    #     # ipdb.set_trace()
-    #     return Response(serializer.data)
