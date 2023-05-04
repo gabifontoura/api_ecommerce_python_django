@@ -3,7 +3,7 @@ from rest_framework import status
 from rest_framework.response import Response
 from .models import Cart, CartProduct
 from products.models import Product
-from .serializers import CartProductSerializer, CartSerializer
+from .serializers import CartProductSerializer, CartSerializer, CartProductListSerializer
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.permissions import IsAuthenticated
 from django.shortcuts import get_object_or_404
@@ -25,7 +25,7 @@ class ListCartView(generics.ListAPIView):
     permission_classes = [IsAuthenticated]
     
     queryset = CartProduct.objects.all()
-    serializer_class = CartProductSerializer
+    serializer_class = CartProductListSerializer
 
     def get_queryset(self):
         cart = get_object_or_404(Cart.objects.filter(user=self.request.user))
@@ -33,18 +33,33 @@ class ListCartView(generics.ListAPIView):
         return cart_products
         
 
-class CartDetailView(generics.UpdateAPIView, generics.DestroyAPIView):
+class CartDetailView(generics.UpdateAPIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
 
     queryset = CartProduct.objects.all()
     serializer_class = CartProductSerializer
 
-    lookup_url_kwarg = 'product_id'
+    lookup_field = 'product_id'
 
     def get_queryset(self):
         cart = get_object_or_404(Cart, user=self.request.user)
         get_product = get_object_or_404(Product, pk=self.kwargs.get('product_id'))
-        cart_product = self.queryset.filter(product=get_product, cart=cart).first()\
+        cart_product = self.queryset.filter(product=get_product, cart=cart).first()
 
         return cart_product
+    
+    # Se usar o código abaixo funciona a atualização
+    
+    # def update(self, request, *args, **kwargs):
+    #     cart = get_object_or_404(Cart, user=self.request.user)
+    #     get_product = get_object_or_404(Product, pk=self.kwargs.get('product_id'))
+    #     cart_product = self.queryset.filter(product=get_product, cart=cart).first()
+    #     # instance = self.get_object()
+    #     instance = cart_product
+    #     serializer = self.get_serializer(instance, data=request.data, partial=self.partial_update)
+    #     serializer.is_valid(raise_exception=True)
+    #     serializer.save()
+    #     # import ipdb
+    #     # ipdb.set_trace()
+    #     return Response(serializer.data)
