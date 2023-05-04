@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 from .models import User
+from rest_framework.exceptions import ValidationError
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -30,7 +31,7 @@ class UserSerializer(serializers.ModelSerializer):
                 continue
 
             if instance.role in ['Cliente', 'Vendedor'] and validated_data.get('role', instance.role) == 'Administrador':
-                raise ValueError("Você não tem permissão para atualizar a função para 'adm'")
+                raise ValidationError({"message": "Você não tem permissão para atualizar a função para 'Administrador'"})
                 
             setattr(instance, key, value)
 
