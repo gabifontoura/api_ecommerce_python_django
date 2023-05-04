@@ -1,20 +1,27 @@
 from rest_framework import serializers
+from django.shortcuts import get_object_or_404
 from .models import Cart, CartProduct
 
 
 
-class CartProductSerializer(serializers.ModelSerializer):
+class CartProductSerializer(serializers.ModelSerializer):  
     class Meta:
         model = CartProduct
-        fields = ('id', 'product_quantity', 'product')
+        fields = ('id', 'cart_id','product_quantity', 'product_id')
+        read_only = ['cart_id']
 
-    # def get(self, validated_data):
-    #     cart = Cart.objects.get(user=validated_data['user'])
+    def get(self, validated_data):
+        cart = get_object_or_404(Cart, user=validated_data['user'])
+        # get_object_or_404(Cart.objects.filter(user=self.request.user))
 
-    #     cart_products = CartProduct.objects.filter(
-    #         cart=cart,
-    #     )
+        cart_products = CartProduct.objects.filter(
+            cart=cart
+        )
 
+        import ipdb
+        ipdb.set_trace()
+
+        return cart_products
 
     def create(self, validated_data):
         cart, created = Cart.objects.get_or_create(user=validated_data['user'])
@@ -24,6 +31,8 @@ class CartProductSerializer(serializers.ModelSerializer):
         ).first()
         if cart_product:
             raise ValueError("O produto já existe no carrinho")
+
+        validated_data.pop('user', None)
 
         return CartProduct.objects.create(cart=cart, **validated_data)
  
