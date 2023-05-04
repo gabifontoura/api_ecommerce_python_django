@@ -9,7 +9,7 @@ class Product(models.Model):
     name = models.CharField(max_length=50)
     category = models.CharField(max_length=50)
     value = models.DecimalField(max_digits=10, decimal_places=2)
-    quantity = models.IntegerField(default=1)
+    quantity = models.PositiveIntegerField(default=1)
     is_available = models.BooleanField(default=True)
     image = models.TextField(null=True)
 

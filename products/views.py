@@ -10,7 +10,11 @@ from products.models import Product
 from products.serializers import ProductSerializer
 
 
-class ProductView(generics.ListCreateAPIView):
+class ProductView(generics.ListAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    
+class CreateProductView(generics.CreateAPIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsSellerOrAdmin]
 
@@ -27,3 +31,5 @@ class ProductDetailView(generics.RetrieveUpdateDestroyAPIView):
 
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+
+    lookup_url_kwarg = "product_id"

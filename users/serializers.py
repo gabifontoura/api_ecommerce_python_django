@@ -28,6 +28,10 @@ class UserSerializer(serializers.ModelSerializer):
                 instance.set_password(value)
 
                 continue
+
+            if instance.role in ['Cliente', 'Vendedor'] and validated_data.get('role', instance.role) == 'Administrador':
+                raise ValueError("Você não tem permissão para atualizar a função para 'adm'")
+                
             setattr(instance, key, value)
 
         instance.save()

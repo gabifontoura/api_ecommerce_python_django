@@ -1,11 +1,11 @@
 from rest_framework import serializers
 from .models import Product
 
-
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = [
+            "id",
             "name",
             "category",
             "value",
@@ -14,8 +14,7 @@ class ProductSerializer(serializers.ModelSerializer):
             "image",
             "seller_id",
         ]
-
-        extra_kwargs = {"seller_id": {"write_only": True}}
+        read_only = ["seller_id", "is_available"]
 
     def create(self, validated_data):
         return Product.objects.create(**validated_data)
@@ -23,3 +22,12 @@ class ProductSerializer(serializers.ModelSerializer):
     def update(self, instance: Product, validated_data: dict) -> Product:
         for key, value in validated_data.items():
             setattr(instance, key, value)
+
+        if instance.quantity == 0:
+            instance.is_available = False
+        else:
+            instance.is_available = True
+            
+        instance.save()
+        
+        return instance
