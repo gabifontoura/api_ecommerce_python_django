@@ -28,6 +28,6 @@ class IsSellerOwnerOrAdmin(permissions.BasePermission):
     
 class IsOrderSellerOrAdmin(permissions.BasePermission):
     def has_permission(self, request:Request, view:View):
-        order = Order.objects.filter(id = view.kwargs['order_id'])
+        order = Order.objects.filter(id = view.kwargs['order_id']).first()
 
         return (request.user.role == "Vendedor" and request.user.id == order.seller_id) or request.user.is_superuser
