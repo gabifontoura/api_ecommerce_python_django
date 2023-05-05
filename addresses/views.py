@@ -2,7 +2,7 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.generics import CreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.permissions import IsAuthenticated
 
-from users.permissions import IsAddressOwnerOrAdminPermission
+from users.permissions import IsIdOwnerOrAdminPermission
 from addresses.models import Address
 from users.models import User
 from addresses.serializers import AddressSerializer
@@ -20,7 +20,7 @@ class AddressView(CreateAPIView):
 
 class AddressDetailView(RetrieveUpdateDestroyAPIView):
     authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAddressOwnerOrAdminPermission]
+    permission_classes = [IsIdOwnerOrAdminPermission]
 
     serializer_class = AddressSerializer
     lookup_field = "user_id"
