@@ -5,6 +5,10 @@ from django.shortcuts import get_object_or_404
 from carts.models import Cart, CartProduct
 from orders.models import Order
 from products.models import Product
+from users.models import User
+
+from django.core.mail import send_mail
+from django.conf import settings
 
 class OrderSerializer(serializers.ModelSerializer):
     class Meta:
@@ -66,6 +70,12 @@ class OrderSerializer(serializers.ModelSerializer):
         instance.status = validated_data['status']
         instance.save()
 
-        # Aqui vai o email para o usuario
+        send_mail(
+            subject = 'Atualização do seu pedido',
+            message = f'O status do pedido {instance.product["name"]} foi atualizado para {instance.status}',
+            from_email = settings.EMAIL_HOST_USER,
+            recipient_list = [instance.user.email],
+            fail_silently = False
+        )
         
         return instance
