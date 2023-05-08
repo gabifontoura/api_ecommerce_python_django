@@ -1,5 +1,4 @@
 from django.shortcuts import render
-
 # Create your views here.
 from django.shortcuts import render
 from rest_framework_simplejwt.authentication import JWTAuthentication
@@ -9,7 +8,6 @@ from users.permissions import IsSellerOrAdmin, IsSellerOwnerOrAdmin
 from products.models import Product
 from products.serializers import ProductSerializer
 from drf_spectacular.utils import extend_schema
-
 
 class CreateProductView(generics.CreateAPIView):
     authentication_classes = [JWTAuthentication]
@@ -64,7 +62,6 @@ class ProductView(generics.ListAPIView):
     )
     def get(self, request, *args, **kwargs):
         return super().get(request, *args, **kwargs)
-    
 
 class ProductDetailView(generics.UpdateAPIView, generics.DestroyAPIView):
     authentication_classes = [JWTAuthentication]

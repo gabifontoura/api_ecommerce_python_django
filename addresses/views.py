@@ -2,6 +2,7 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.generics import CreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.permissions import IsAuthenticated
 
+
 from users.permissions import IsIdOwnerOrAdminPermission
 from addresses.models import Address
 from users.models import User
