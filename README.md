@@ -12,6 +12,9 @@
   <h5 align="center">Feito por: Victor Guterres, Gabriel Machado, Gabriela Fontoura, Guileano Gadea </h5>  
 </div>
 
+## **Endpoints**
+
+A API tem um total de 19 endpoints, sendo em volta principalmente do usuário onde ele pode ser: Cliente, Vendedor, Administrador - podendo cadastrar seu perfil, selecionar e comprar produtos se o usuário for cliente ou criar e editar caso o usuário for vendedor/administrador(na regra de negócios de nossa aplicação o vendedor também deve ser um cliente) ele será capaz de editar e excluir produtos . <br/>
 
 
 
