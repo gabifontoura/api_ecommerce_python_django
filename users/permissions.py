@@ -4,6 +4,7 @@ from users.models import User
 from products.models import Product
 from addresses.models import Address
 from orders.models import Order
+from django.shortcuts import get_object_or_404
 
 class IsOwnerOrAdminPermission(permissions.BasePermission):
     def has_object_permission(
@@ -28,6 +29,6 @@ class IsSellerOwnerOrAdmin(permissions.BasePermission):
     
 class IsOrderSellerOrAdmin(permissions.BasePermission):
     def has_permission(self, request:Request, view:View):
-        order = Order.objects.filter(id = view.kwargs['order_id']).first()
+        order = get_object_or_404(Order, id = view.kwargs['order_id'])
 
         return (request.user.role == "Vendedor" and request.user.id == order.seller_id) or request.user.is_superuser

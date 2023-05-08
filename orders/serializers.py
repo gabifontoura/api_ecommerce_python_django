@@ -34,7 +34,7 @@ class OrderSerializer(serializers.ModelSerializer):
                     "available_quantity": cart_product.product.quantity
                 }
 
-                raise ValidationError({"message": "Quantidade do produto indisponível",
+                raise ValidationError({"detail": "Invalid quantity product",
                                    "result": [data]
                                    })
         
