@@ -7,6 +7,7 @@ from .serializers import CartProductSerializer, CartSerializer, CartProductListS
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.permissions import IsAuthenticated
 from django.shortcuts import get_object_or_404
+from drf_spectacular.utils import extend_schema
 
 
 class AddToCartView(generics.CreateAPIView):
@@ -19,6 +20,16 @@ class AddToCartView(generics.CreateAPIView):
     def perform_create(self, serializer):
         user = self.request.user    
         serializer.save(user=user)
+  
+    @extend_schema(
+        operation_id="Create Cart",
+        responses={200: CartProductSerializer},
+        description="Create Cart",
+        summary="Create Cart",
+        tags=["Cart"]
+    )
+    def post(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
  
 class ListCartView(generics.ListAPIView):
     authentication_classes = [JWTAuthentication]
@@ -31,6 +42,16 @@ class ListCartView(generics.ListAPIView):
         cart = get_object_or_404(Cart.objects.filter(user=self.request.user))
         cart_products = CartProduct.objects.filter(cart=cart)
         return cart_products
+    
+    @extend_schema(
+        operation_id="List My Cart",
+        responses={200: CartProductSerializer},
+        description="List My Cart",
+        summary="List My Cart",
+        tags=["Cart"]
+    )
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
         
 
 class CartDetailView(generics.UpdateAPIView, generics.DestroyAPIView):
@@ -48,3 +69,33 @@ class CartDetailView(generics.UpdateAPIView, generics.DestroyAPIView):
         cart_product = self.queryset.filter(product=get_product, cart=cart).first()
 
         return cart_product
+    
+    @extend_schema(
+        operation_id="Updated Cart",
+        responses={200: CartProductSerializer},
+        description="Updated product inside cart",
+        summary="Updated product inside cart",
+        tags=["Cart"]
+    )
+    def patch(self, request, *args, **kwargs):
+        return super().update(request, *args, **kwargs)
+    
+    @extend_schema(
+        operation_id="Updated Cart",
+        responses={200: CartProductSerializer},
+        description="Updated product inside cart",
+        summary="Updated product inside cart",
+        tags=["Cart"]
+    )
+    def put(self, request, *args, **kwargs):
+        return super().update(request, *args, **kwargs)
+       
+    @extend_schema(
+        operation_id="Deleta Cart",
+        responses={204: CartProductSerializer},
+        description="Deleta product inside cart",
+        summary="Deleta product inside cart",
+        tags=["Cart"]
+    )
+    def delete(self, request, *args, **kwargs):
+        return super().update(request, *args, **kwargs)
