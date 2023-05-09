@@ -28,7 +28,7 @@ class OrderView(CreateAPIView):
         tags=["Order"]
     )
     def post(self, request, *args, **kwargs):
-        return super().get(request, *args, **kwargs)
+        return super().post(request, *args, **kwargs)
 
 class OrderDetailView(UpdateAPIView):
     authentication_classes = [JWTAuthentication]
@@ -50,7 +50,7 @@ class OrderDetailView(UpdateAPIView):
         tags=["Order"]
     )
     def patch(self, request, *args, **kwargs):
-        return super().update(request, *args, **kwargs)
+        return super().patch(request, *args, **kwargs)
     
     @extend_schema(
         operation_id="Updated Order",
@@ -60,7 +60,7 @@ class OrderDetailView(UpdateAPIView):
         tags=["Order"]
     )
     def put(self, request, *args, **kwargs):
-        return super().update(request, *args, **kwargs)
+        return super().put(request, *args, **kwargs)
     
 class OrderSoldView(ListAPIView):
     authentication_classes = [JWTAuthentication]

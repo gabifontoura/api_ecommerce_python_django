@@ -27,7 +27,7 @@ class UserView(generics.CreateAPIView):
         tags=["User"]
     )
     def post(self, request, *args, **kwargs):
-        return super().get(request, *args, **kwargs)
+        return super().post(request, *args, **kwargs)
 
 class UserAllView(generics.ListAPIView):
     authentication_classes = [JWTAuthentication]
@@ -71,7 +71,7 @@ class UserViewDetail(generics.RetrieveUpdateDestroyAPIView):
         tags=["User by Id"]
     )
     def patch(self, request, *args, **kwargs):
-        return super().update(request, *args, **kwargs)
+        return super().patch(request, *args, **kwargs)
     
     @extend_schema(
         operation_id="Updated all user",
@@ -81,7 +81,7 @@ class UserViewDetail(generics.RetrieveUpdateDestroyAPIView):
         tags=["User by Id"]
     )
     def put(self, request, *args, **kwargs):
-        return super().update(request, *args, **kwargs)
+        return super().put(request, *args, **kwargs)
     
         
     @extend_schema(
@@ -92,7 +92,7 @@ class UserViewDetail(generics.RetrieveUpdateDestroyAPIView):
         tags=["User by Id"]
     )
     def delete(self, request, *args, **kwargs):
-        return super().update(request, *args, **kwargs)
+        return super().delete(request, *args, **kwargs)
     
 
 class CustomTokenObtainPairView(TokenObtainPairView):
