@@ -4,7 +4,7 @@
 
 <div style="display: inline_block"><br>
 <h1 align="center">
-  <img alt="KenzieHub" title="KenzieHub" src="https://kenzie.com.br/_next/image?url=%2Fimages%2Flogo.png&w=640&q=75" width="100px" />
+  <img alt="KenzieKommerce" title="KenzieKommerce" src="https://kenzie.com.br/_next/image?url=%2Fimages%2Flogo.png&w=640&q=75" width="100px" />
 </h1>
   <p align="center">Este é o backend da aplicação de e-commerce do quinto módulo da Kenzie-Academy-Brasil, desenvolvida em python e django, esta aplicação
   foi feita no intuito de demonstrar os conhecimentos que os desenvolvedores adquiriram sobre python nos últimos 2 meses de aprendizado de python. <p/>
@@ -17,6 +17,10 @@
 A API tem um total de 19 endpoints, sendo em volta principalmente do usuário onde ele pode ser: Cliente, Vendedor, Administrador - podendo cadastrar seu perfil, selecionar e comprar produtos se o usuário for cliente ou criar e editar caso o usuário for vendedor/administrador(na regra de negócios de nossa aplicação o vendedor também deve ser um cliente) ele será capaz de editar e excluir produtos . <br/>
 
 A url base da API é https://ecommerce-g42.onrender.com/
+
+<h1 align="center">
+  <img alt="KenzieKommerce" title="KenzieKommerce" src="https://drive.google.com/file/d/1dWz9-AqqLakLX_afLU5QKIvF-YEVYW0V/view" width="100px" />
+</h1>
 
 
 ## Rotas que não precisam de autenticação
