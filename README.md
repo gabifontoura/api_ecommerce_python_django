@@ -82,6 +82,10 @@ em caso de erro:
  ` GET /users/all - FORMATO DA RESPOSTA - STATUS 200`
 
 ```json
+	"count": 2,
+	"next": null,
+	"previous": null,
+	"results"[
 {
 		"first_name": "Pedro",
 		"last_name": "Castro",
@@ -119,15 +123,41 @@ em caso de erro:
 		"email": "Kenzie@mail.com",
 		"username": "Random"
 }
-
+]
 ```
 Lembrando que no cabeçalho da resposta, temos as informações sobre a paginação, e o nextUrl para acessar a próxima página.
 
 Cabeçalho da resposta:
 
-> nextUrl: https://ecommerce-g42./users?perPage=5&page=2 <br/>
-> page: 1 <br/>
-> perPage: 5
+> count: <br/>
+> page:  <br/>
+> perPage: 
+
+Em caso de erro na autorização ou caso o usuário não passe o token de autorização na requisição:
+
+` GET /users/all - FORMATO DA RESPOSTA - STATUS 401 unauthorized`
+
+
+```json
+
+{
+	"detail": "Authorization header must contain two space-delimited values",
+	"code": "bad_authorization_header"
+}
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
 
 
 
