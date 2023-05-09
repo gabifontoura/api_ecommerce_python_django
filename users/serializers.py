@@ -9,7 +9,7 @@ class UserSerializer(serializers.ModelSerializer):
         validators=[
             UniqueValidator(queryset = User.objects.all(), message = "A user with that username already exists.")
         ],
-    )
+    ) 
     email = serializers.EmailField(
         validators=[
             UniqueValidator(queryset = User.objects.all())

@@ -30,7 +30,7 @@ class AddressView(CreateAPIView):
         tags=["Address"]
     )
     def post(self, request, *args, **kwargs):
-        return super().create(request, *args, **kwargs)
+        return super().post(request, *args, **kwargs)
 
 
 class AddressDetailView(RetrieveUpdateDestroyAPIView):
@@ -61,8 +61,8 @@ class AddressDetailView(RetrieveUpdateDestroyAPIView):
         tags=["Address"]
     )
     def patch(self, request, *args, **kwargs):
-        return super().update(request, *args, **kwargs)
-    
+        return super().patch(request, *args, **kwargs)
+
     @extend_schema(
         operation_id="Updated Address",
         responses={200: AddressSerializer},
@@ -71,8 +71,8 @@ class AddressDetailView(RetrieveUpdateDestroyAPIView):
         tags=["Address"]
     )
     def put(self, request, *args, **kwargs):
-        return super().update(request, *args, **kwargs)
-       
+        return super().put(request, *args, **kwargs)
+
     @extend_schema(
         operation_id="Deleta Address",
         responses={204: AddressSerializer},
@@ -81,4 +81,5 @@ class AddressDetailView(RetrieveUpdateDestroyAPIView):
         tags=["Address"]
     )
     def delete(self, request, *args, **kwargs):
-        return super().update(request, *args, **kwargs)
+        return super().delete(request, *args, **kwargs)
+    

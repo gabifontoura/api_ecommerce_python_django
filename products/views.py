@@ -27,7 +27,7 @@ class CreateProductView(generics.CreateAPIView):
         tags=["Product"]
     )
     def post(self, request, *args, **kwargs):
-        return super().get(request, *args, **kwargs)
+        return super().post(request, *args, **kwargs)
 
 
 class ProductView(generics.ListAPIView):
@@ -80,7 +80,7 @@ class ProductDetailView(generics.UpdateAPIView, generics.DestroyAPIView):
         tags=["Product"]
     )
     def patch(self, request, *args, **kwargs):
-        return super().update(request, *args, **kwargs)
+        return super().patch(request, *args, **kwargs)
     
     @extend_schema(
         operation_id="Updated Product",
@@ -90,7 +90,7 @@ class ProductDetailView(generics.UpdateAPIView, generics.DestroyAPIView):
         tags=["Product"]
     )
     def put(self, request, *args, **kwargs):
-        return super().update(request, *args, **kwargs)
+        return super().put(request, *args, **kwargs)
         
     @extend_schema(
         operation_id="Deleta Product",
@@ -100,4 +100,4 @@ class ProductDetailView(generics.UpdateAPIView, generics.DestroyAPIView):
         tags=["Product"]
     )
     def delete(self, request, *args, **kwargs):
-        return super().update(request, *args, **kwargs) 
+        return super().delete(request, *args, **kwargs) 
