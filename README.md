@@ -73,6 +73,31 @@ em caso de erro:
 }
 ```
 
+<h2 align ='center'> Login de usuário </h2>
+
+
+body:
+
+```json
+       {
+	"username": "John Doe",	
+	"password":1234
+	}
+```
+
+
+`POST /users/login - FORMATO DA RESPOSTA - STATUS 201`
+
+```json
+{
+	"refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY4NDI0NzU4MiwiaWF0IjoxNjgzNjQyNzgyLCJqdGkiOiJhNGM0YzdhN2YxNjg0NmU4ODczNTFmYTJkOWY1NDkxMyIsInVzZXJfaWQiOjJ9.17ZJeaNgKZH5A4OclYufT_ErMIKcr_g8zjLm6Th36Jo",
+	"access": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgzNjk2NzgyLCJpYXQiOjE2ODM2NDI3ODIsImp0aSI6ImFmYzkzYWVkOGEzOTQwMDVhODM3Yzk5ZGVlOTlkMjk3IiwidXNlcl9pZCI6Mn0.xqTLZBTDdIuBcLGSBxpj4BCVFKgu-UbOxw1Nu-s24Aw"
+}
+```
+
+
+
+
 ## Rotas que precisam de autenticação
 
 <h2 align ='center'> Listando usuário </h2>
@@ -141,12 +166,53 @@ Em caso de erro na autorização ou caso o usuário não passe o token de autori
 ```json
 
 {
-	"detail": "Authorization header must contain two space-delimited values",
-	"code": "bad_authorization_header"
+	"detail": "You do not have the authorization to perform this action."
 }
 
 
 ```
+<h2 align ='center'> Dando update e deletando usuários </h2>
+
+Utilizandoa a rota /users/:id é possível fazer a pesquisa do usuário, update e o delete pegando o id do usuário, somente o usuário
+, com exceção do admin pode editar e deletar o próprio delete, caso o usuário tente atualizar o perfil de outro usuário .
+
+essa requisição não precisa de um corpo
+
+` GET /users/:id - FORMATO DA RESPOSTA - STATUS 200 unauthorized`
+
+
+```json
+
+{
+		
+	"email": "Pc@Gmail.com"
+}
+
+
+```
+
+```json
+{
+		"first_name": "Pedro",
+		"last_name": "Castro",
+		"role": "Client",
+		"email": "Pc@Gmail.com",
+		"username": "PcGamerSP"
+}
+
+```
+em caso de erro na autorização:
+
+
+
+```json
+{
+	"detail": "You do not have the authorization to perform this action."
+}
+```
+
+
+
 
 
 
