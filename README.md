@@ -18,9 +18,7 @@ A API tem um total de 19 endpoints, sendo em volta principalmente do usuário on
 
 A url base da API é https://ecommerce-g42.onrender.com/
 
-<h1 align="center">
-  <img alt="KenzieKommerce" title="KenzieKommerce" src="https://drive.google.com/file/d/1dWz9-AqqLakLX_afLU5QKIvF-YEVYW0V/view" width="100px" />
-</h1>
+Diagrama do Der https://drive.google.com/file/d/1dWz9-AqqLakLX_afLU5QKIvF-YEVYW0V/view" 
 
 
 ## Rotas que não precisam de autenticação
@@ -53,6 +51,28 @@ A url base da API é https://ecommerce-g42.onrender.com/
 }
 
 ```
+em caso de erro:
+
+```json
+{
+	"first_name": [
+		"This field is required."
+	],
+	"last_name": [
+		"This field is required."
+	],
+	"username": [
+		"This field is required."
+	],
+	"email": [
+		"This field is required."
+	],
+	"password": [
+		"This field is required."
+	]
+}
+```
+
 ## Rotas que precisam de autenticação
 
 <h2 align ='center'> Listando usuário </h2>
