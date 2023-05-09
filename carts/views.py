@@ -29,7 +29,7 @@ class AddToCartView(generics.CreateAPIView):
         tags=["Cart"]
     )
     def post(self, request, *args, **kwargs):
-        return super().get(request, *args, **kwargs)
+        return super().post(request, *args, **kwargs)
  
 class ListCartView(generics.ListAPIView):
     authentication_classes = [JWTAuthentication]
@@ -78,7 +78,7 @@ class CartDetailView(generics.UpdateAPIView, generics.DestroyAPIView):
         tags=["Cart"]
     )
     def patch(self, request, *args, **kwargs):
-        return super().update(request, *args, **kwargs)
+        return super().patch(request, *args, **kwargs)
     
     @extend_schema(
         operation_id="Updated Cart",
@@ -88,7 +88,7 @@ class CartDetailView(generics.UpdateAPIView, generics.DestroyAPIView):
         tags=["Cart"]
     )
     def put(self, request, *args, **kwargs):
-        return super().update(request, *args, **kwargs)
+        return super().put(request, *args, **kwargs)
        
     @extend_schema(
         operation_id="Deleta Cart",
@@ -98,4 +98,4 @@ class CartDetailView(generics.UpdateAPIView, generics.DestroyAPIView):
         tags=["Cart"]
     )
     def delete(self, request, *args, **kwargs):
-        return super().update(request, *args, **kwargs)
+        return super().delete(request, *args, **kwargs)
