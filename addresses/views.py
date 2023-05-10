@@ -3,7 +3,8 @@ from rest_framework.generics import CreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.permissions import IsAuthenticated
 from users.permissions import IsIdOwnerOrAdminPermission
 from addresses.models import Address
-
+from .serializers import AddressSerializer
+from drf_spectacular.utils import extend_schema
 
 class AddressView(CreateAPIView):
     authentication_classes = [JWTAuthentication]
