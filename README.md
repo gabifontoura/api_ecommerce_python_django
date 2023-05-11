@@ -525,7 +525,7 @@ no caso do vendedor ou admin ele poderá fazer atualizações e listar os pedido
 	"email": "Pc@Gmail.com",
 	"username": "PcGamerSP"}
 }]
-
+}
 ```
 `PATCH /orders/:id - FORMA DA RESPOSTA - STATUS 200 `
 
