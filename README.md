@@ -262,9 +262,9 @@ o endereço de outro usuário que não seja ele mesmo e ele não seja administra
 ```json
 
 {
-	"street":""P.O. Box 340, 1023 Arcu. Ave"",
-	"number":""838"",
-	"city":""Colombo"",
+	"street":"P.O. Box 340, 1023 Arcu. Ave",
+	"number":"838",
+	"city":"Colombo",
 	"state":"PR"
 }
 
@@ -499,7 +499,8 @@ Na  rota /orders/ o usuário sendo cliente é capaz de finalizar os seus pedidos
 no caso do vendedor ou admin ele poderá fazer atualizações e listar os pedidos que foram feitos pelo usuário na rota /orders/order_id,
 /orders/finished/user_id, orders/sold/user_id.
 
-`POST /orders/:id - FORMA DA RESPOSTA - STATUS 201 `
+`POST /orders/ - FORMA DA RESPOSTA - STATUS 201 `
+
 ```json
 {
 	"product": 1
@@ -526,8 +527,84 @@ no caso do vendedor ou admin ele poderá fazer atualizações e listar os pedido
 }]
 
 ```
+`PATCH /orders/:id - FORMA DA RESPOSTA - STATUS 200 `
 
 
+```json
+{
+"status": "Entregue"
+}
+
+```
+```json
+{
+"id":1, 
+"status":"Entregue", 
+"created_at":"10/05/2023", 
+"seller_id":1, 
+"product":1, 
+"user": [{
+	"id":1,
+	"first_name": "Pedro",
+	"last_name": "Castro",
+	"role": "Client",
+	"email": "Pc@Gmail.com",
+	"username": "PcGamerSP"}
+}]
+
+```
+
+
+
+`GET /orders/finished/:user_id - FORMA DA RESPOSTA - STATUS 200 `
+
+
+```json
+{
+"id":1, 
+"status":"Pedido Realizado", 
+"created_at":"10/05/2023", 
+"seller_id":1, 
+"product":1, 
+"user": [{
+	"id":1,
+	"first_name": "Pedro",
+	"last_name": "Castro",
+	"role": "Client",
+	"email": "Pc@Gmail.com",
+	"username": "PcGamerSP"}
+}]
+```
+`GET /orders/sold/:user_id - FORMA DA RESPOSTA - STATUS 200 `
+
+```json{
+"id":1, 
+"status":"Entregue", 
+"created_at":"10/05/2023", 
+"seller_id":1, 
+"product":1, 
+"user": [{
+	"id":1,
+	"first_name": "Pedro",
+	"last_name": "Castro",
+	"role": "Client",
+	"email": "Pc@Gmail.com",
+	"username": "PcGamerSP"}
+}]
+```
+
+em caso de erros na resposta :
+
+```json
+{
+	"detail": "Not found."
+}
+```
+```json
+{
+	"detail": "Authentication credentials were not provided."
+}
+```
 
 
 
