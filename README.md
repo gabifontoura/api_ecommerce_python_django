@@ -42,7 +42,8 @@ Diagrama do Der https://drive.google.com/file/d/1dWz9-AqqLakLX_afLU5QKIvF-YEVYW0
 `POST /users - FORMATO DA RESPOSTA - STATUS 201`
 
 ```json
-{
+{               
+                "id":1
 		"first_name": "Pedro",
 		"last_name": "Castro",
 		"role": "Client",
@@ -232,7 +233,7 @@ essa requisição não precisa de um corpo
 ```
 
 ```json
-{
+{		"id":1
 		"first_name": "Pedro",
 		"last_name": "Castro",
 		"role": "Client",
@@ -491,6 +492,41 @@ em caso de erros:
 	"detail": "Authentication credentials were not provided."
 }
 ```
+
+<h2 align ='center'> Terminar e listar perdidos  </h2>
+
+Na  rota /orders/ o usuário sendo cliente é capaz de finalizar os seus pedidos mantidos em seu carrinho,
+no caso do vendedor ou admin ele poderá fazer atualizações e listar os pedidos que foram feitos pelo usuário na rota /orders/order_id,
+/orders/finished/user_id, orders/sold/user_id.
+
+`POST /orders/:id - FORMA DA RESPOSTA - STATUS 201 `
+```json
+{
+	"product": 1
+}
+
+```
+
+
+
+```json
+{
+"id":1, 
+"status":"Pedido Realizado", 
+"created_at":"10/05/2023", 
+"seller_id":1, 
+"product":1, 
+"user": [{
+	"id":1,
+	"first_name": "Pedro",
+	"last_name": "Castro",
+	"role": "Client",
+	"email": "Pc@Gmail.com",
+	"username": "PcGamerSP"}
+}]
+
+```
+
 
 
 
