@@ -470,7 +470,7 @@ caso um vendedor tente editar/deletar itens do carrinho ele será impedido.
 				"is_available": true,
 				"image": null,
 				"seller_id": 4
-			}
+			
 		}
 	]
 }
@@ -549,7 +549,7 @@ no caso do vendedor ou admin ele poderá fazer atualizações e listar os pedido
 	"last_name": "Castro",
 	"role": "Client",
 	"email": "Pc@Gmail.com",
-	"username": "PcGamerSP"}
+	"username": "PcGamerSP"
 }]
 
 ```
@@ -572,7 +572,7 @@ no caso do vendedor ou admin ele poderá fazer atualizações e listar os pedido
 	"last_name": "Castro",
 	"role": "Client",
 	"email": "Pc@Gmail.com",
-	"username": "PcGamerSP"}
+	"username": "PcGamerSP"
 }]
 ```
 `GET /orders/sold/:user_id - FORMA DA RESPOSTA - STATUS 200 `
@@ -589,7 +589,7 @@ no caso do vendedor ou admin ele poderá fazer atualizações e listar os pedido
 	"last_name": "Castro",
 	"role": "Client",
 	"email": "Pc@Gmail.com",
-	"username": "PcGamerSP"}
+	"username": "PcGamerSP"
 }]
 ```
 
