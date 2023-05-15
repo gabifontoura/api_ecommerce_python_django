@@ -1,6 +1,6 @@
 # api_ecommerce_python_django
 <br>
-API de organização REST desenvolvida em Python e Django, integrada ao banco de dados PostgreSQL. Feita com Django Rest Framework (DRF), Generic Views, validação de dados e documentação. Possui paginação em rotas de listagem, sendo algumas rotas protegidas, com permissões distintas para admin, vendedor e cliente, utilizando JSON Web Token (JWT) e o usuário padrão do Django(AbstractUser)<br><br>
+API de organização REST desenvolvida em Python e Django, integrada ao banco de dados PostgreSQL. <br><br> Feita com Django Rest Framework (DRF), Generic Views, validação de dados e documentação. Possui paginação em rotas de listagem, sendo algumas rotas protegidas, com permissões distintas para administrador, vendedor e cliente, utilizando JSON Web Token (JWT) e o usuário padrão do Django(AbstractUser). Quando o pedido é atualizado pelo vendedor, o cliente recebe automaticamente um email informando se o pedido está em andamento ou entregue.<br><br>
 MVP feito por: Gabriel Machado, Gabriela Fontoura, Guileano Gadea, Victor Guterres em cerca de 7 dias <br><br>
 
 Banco de dados estruturado nas tabelas: users, addresses, products, cart, orders, que estabelacem relacionamentos 1:1, 1:N e N:N.<br>
