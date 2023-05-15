@@ -1,29 +1,20 @@
-# Api_Django_Ecommerce
+# api_ecommerce_python_django
+<br>
+API de organização REST desenvolvida em Python e Django, integrada ao banco de dados PostgreSQL. Feita com Django Rest Framework (DRF), Generic Views, validação de dados e documentação. Possui paginação em rotas de listagem, sendo algumas rotas protegidas, com permissões distintas para admin, vendedor e cliente, utilizando JSON Web Token (JWT) e o usuário padrão do Django(AbstractUser)<br><br>
+MVP feito por: Gabriel Machado, Gabriela Fontoura, Guileano Gadea, Victor Guterres em cerca de 7 dias <br><br>
 
+Banco de dados estruturado nas tabelas: users, addresses, products, cart, orders, que estabelacem relacionamentos 1:1, 1:N e N:N.<br>
+Possui 19 endpoints que viabilizam rotas básicas de manipulação de dados (CRUD) <br>
+<br>
+Diagrama Entidades e Relacionamentos: <br>
+![DER](https://github.com/gabifontoura/api_ecommerce_python_django/assets/110035918/ebd70296-6720-4904-a46d-0dba321effd6)
+<br><br>
+Deploy (URL base): https://ecommerce-g42.onrender.com/  <br>
+Documentação: https://ecommerce-g42.onrender.com/api/docs/swagger/
 
+# Rotas que não precisam de autenticação
 
-<div style="display: inline_block"><br>
-<h1 align="center">
-  <img alt="KenzieKommerce" title="KenzieKommerce" src="https://kenzie.com.br/_next/image?url=%2Fimages%2Flogo.png&w=640&q=75" width="100px" />
-</h1>
-  <p align="center">Este é o backend da aplicação de e-commerce do quinto módulo da Kenzie-Academy-Brasil, desenvolvida em python e django, esta aplicação
-  foi feita no intuito de demonstrar os conhecimentos que os desenvolvedores adquiriram sobre python nos últimos 2 meses de aprendizado . <p/>
-  
-  <h5 align="center">Feito por: Victor Guterres, Gabriel Machado, Gabriela Fontoura, Guileano Gadea </h5>  
-</div>
-
-## **Endpoints**
-
-A API tem um total de 19 endpoints, sendo em volta principalmente do usuário onde ele pode ser: Cliente, Vendedor, Administrador - podendo cadastrar seu perfil, selecionar e comprar produtos se o usuário for cliente ou criar e editar caso o usuário for vendedor/administrador(na regra de negócios de nossa aplicação o vendedor também deve ser um cliente) ele será capaz de editar e excluir produtos . <br/>
-
-A url base da API é https://ecommerce-g42.onrender.com/
-
-Diagrama do Der https://drive.google.com/file/d/1dWz9-AqqLakLX_afLU5QKIvF-YEVYW0V/view" 
-
-
-## Rotas que não precisam de autenticação
-
-<h2 align ='center'> Criando usuário </h2>
+<h2> Criação de usuário </h2>
  
  Nessa aplicação o usuário pode se cadastrar utilizando seu primeiro e último nome, seu nome de usuário e como padrão a role(função) dele
  vem como cliente(apenas administradores podem criar outros administradores e vendedores) .
@@ -74,7 +65,7 @@ em caso de erro:
 }
 ```
 
-<h2 align ='center'> Login de usuário </h2>
+<h2> Login de usuário </h2>
 
 
 body:
@@ -96,7 +87,7 @@ body:
 }
 ```
 
-<h2 align ='center'> Listando Produtos  </h2>
+<h2> Lista de Produtos  </h2>
 
 Na rota /products/ qualquer usuário é capaz de ter acesso a lista de produtos 
 
@@ -139,9 +130,9 @@ Na rota /products/ qualquer usuário é capaz de ter acesso a lista de produtos
 
 
 
-## Rotas que precisam de autenticação
+# Rotas que precisam de autenticação
 
-<h2 align ='center'> Listando usuário </h2>
+<h2> Lista de todos os usuários </h2>
  
  Nessa aplicação o usuário deve ser administrador para poder listar os usuários .
  
@@ -166,29 +157,6 @@ Na rota /products/ qualquer usuário é capaz de ter acesso a lista de produtos
 		"email": "Kenzie@mail.com",
 		"username": "Random"
 },
-{
-		"first_name": "John",
-		"last_name": "Doe",
-		"role": "Client",
-		"email": "Kenzie@mail.com",
-		"username": "Random"
-}
-,
-{
-		"first_name": "Roberto",
-		"last_name": "Schrödinger",
-		"role": "Client",
-		"email": "Kenzie@mail.com",
-		"username": "Random"
-}
-,
-{
-		"first_name": "Alberto",
-		"last_name": "Leone",
-		"role": "Client",
-		"email": "Kenzie@mail.com",
-		"username": "Random"
-}
 ]
 ```
 Lembrando que no cabeçalho da resposta, temos as informações sobre a paginação, e o nextUrl para acessar a próxima página.
@@ -212,7 +180,7 @@ Em caso de erro na autorização ou caso o usuário não passe o token de autori
 
 
 ```
-<h2 align ='center'> Dando update e deletando usuários </h2>
+<h2> Atualização e deleção de usuários </h2>
 
 Utilizandoa a rota /users/:id é possível fazer a pesquisa do usuário, update e o delete pegando o id do usuário, somente o usuário
 , com exceção do admin pode editar e deletar o próprio delete, caso o usuário tente atualizar o perfil de outro usuário .
@@ -252,7 +220,7 @@ em caso de erro na autorização:
 }
 ```
 
-<h2 align ='center'> Criando endereços para os usuários </h2>
+<h2> Criação de endereços para os usuários </h2>
 
 Nessa rota /addresses o usuário é capaz de registrar o seu próprio endereço, 
 na rota /addresses/:id editar e deletar o seu próprio endereço, caso o usuário tente editar 
@@ -321,7 +289,7 @@ Em caso de erro na autorização:
 }
 ```
 
-<h2 align ='center'> Criando produtos </h2>
+<h2> Criação de produtos </h2>
 
 Na rota products/add/ o usuário sendo seller ou admin é capaz de criar um produto
 
@@ -351,7 +319,7 @@ Na rota products/add/ o usuário sendo seller ou admin é capaz de criar um prod
 }
 
 ```
-<h2 align ='center'> Editando produtos </h2>
+<h2> Atualização de produtos </h2>
 
 Na rota products/:id/ o usuário sendo seller ou admin é capaz de editar e deletar produtos da aplicação
 passando (o id dos produtos deve ser passado na url)   
@@ -388,7 +356,7 @@ em caso de erro na permissão:
 	"detail": "You do not have permission to perform this action."
 }
 ```
-<h2 align ='center'> Adicionar e Listar itens do Carrinho  </h2>
+<h2> Adicionar e Listar itens do Carrinho  </h2>
 
 Nas rotas /carts/ e /carts/my_cart o usuário sendo cliente é capaz de adicionar produtos em seu carrinho
 através da rota /carts/ e também podendo revisar e listar seus pedidos através da rota /carts/my_cart 
@@ -437,7 +405,7 @@ através da rota /carts/ e também podendo revisar e listar seus pedidos atravé
 	]
 }
 ```
-<h2 align ='center'> Editar e Listar itens do Carrinho  </h2>
+<h2> Editar e Listar itens do Carrinho  </h2>
 
 Nas rotas /carts/:id o usuário sendo cliente é capaz de editar e deletar produtos em seu carrinho
 caso um vendedor tente editar/deletar itens do carrinho ele será impedido.
@@ -493,7 +461,7 @@ em caso de erros:
 }
 ```
 
-<h2 align ='center'> Terminar e listar perdidos  </h2>
+<h2> Finalizar compras e listar pedidos</h2>
 
 Na  rota /orders/ o usuário sendo cliente é capaz de finalizar os seus pedidos mantidos em seu carrinho,
 no caso do vendedor ou admin ele poderá fazer atualizações e listar os pedidos que foram feitos pelo usuário na rota /orders/order_id,
